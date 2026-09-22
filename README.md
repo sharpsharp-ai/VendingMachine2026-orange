@@ -1,4 +1,4 @@
-# Getränkeautomat
+# Der Getränkeautomat
 
 Startstand für das Training. Die Seite ist fertig, der Automat dahinter tut noch nichts: Jeder Klick
 kommt an, ändert aber nichts. Genau ein Szenario ist rot, „Freies Getränk". Alles Weitere entsteht
