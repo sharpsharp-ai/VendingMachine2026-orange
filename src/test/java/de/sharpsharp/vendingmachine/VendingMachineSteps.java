@@ -6,7 +6,7 @@ import io.cucumber.java.de.Wenn;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * Step definitions for the feature files. The scenarios talk to the machine directly,
@@ -31,5 +31,12 @@ public class VendingMachineSteps {
     @Dann("liegt eine Dose {drink} im Ausgabefach")
     public void oneCanLiesInTheOutputTray(Drink drink) {
         assertThat(machine.outputTray(), contains(drink));
+    }
+
+    @Dann("wird auf dem Display unter jedem Getränk der zugehörige Preis angezeigt")
+    public void everyDrinkHasAPrice() {
+        for (Drink drink: Drink.values()) {
+            assertThat(machine.price(drink), notNullValue());
+        }
     }
 }

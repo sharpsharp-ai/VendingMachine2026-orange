@@ -7,3 +7,7 @@ Funktionalität: Freies Getränk
     Angenommen der Automat ist frisch gestartet
     Wenn ich Cola wähle
     Dann liegt eine Dose Cola im Ausgabefach
+
+  Szenario: Für jedes Getränk wird der Preis angezeigt
+    Angenommen der Automat ist frisch gestartet
+    Dann wird auf dem Display unter jedem Getränk der zugehörige Preis angezeigt
