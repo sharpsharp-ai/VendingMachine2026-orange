@@ -15,4 +15,11 @@ public class VendingMachineTest {
         assertThat(machine.price(Drink.LEMON), is(100));
         assertThat(machine.price(Drink.BEER), is(200));
     }
+
+    @Test
+    public void insertCoinAddsToCredit() {
+        var machine = new VendingMachine(new FakeClock());
+        machine.insertCoin(50);
+        assertThat(machine.credit(), is(50));
+    }
 }
