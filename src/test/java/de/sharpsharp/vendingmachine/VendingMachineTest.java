@@ -3,7 +3,9 @@ package de.sharpsharp.vendingmachine;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 public class VendingMachineTest {
 
@@ -21,5 +23,20 @@ public class VendingMachineTest {
         var machine = new VendingMachine(new FakeClock());
         machine.insertCoin(50);
         assertThat(machine.credit(), is(50));
+    }
+
+    @Test
+    public void selectDrinkWithNoCreditGivesNoCan() {
+        var machine = new VendingMachine(new FakeClock());
+        machine.selectDrink(Drink.COLA);
+        assertThat(machine.outputTray(), not(contains(Drink.COLA)));
+    }
+
+    @Test
+    public void selectDrinkReducesCredit() {
+        var machine = new VendingMachine(new FakeClock());
+        machine.insertCoin(100);
+        machine.selectDrink(Drink.COLA);
+        assertThat(machine.credit(), is(0));
     }
 }

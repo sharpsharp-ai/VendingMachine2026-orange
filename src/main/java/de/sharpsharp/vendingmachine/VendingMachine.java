@@ -49,8 +49,10 @@ public class VendingMachine {
     }
 
     public synchronized void selectDrink(Drink drink) {
-        outputTrayDrinks.add(drink);
-
+        if (credit >= price(drink)) {
+            outputTrayDrinks.add(drink);
+            credit -= price(drink);
+        }
     }
 
     public synchronized void cancel() {

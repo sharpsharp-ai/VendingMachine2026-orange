@@ -3,12 +3,11 @@ package de.sharpsharp.vendingmachine;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.de.Angenommen;
 import io.cucumber.java.de.Dann;
+import io.cucumber.java.de.Und;
 import io.cucumber.java.de.Wenn;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 
 /**
  * Step definitions for the feature files. The scenarios talk to the machine directly,
@@ -51,7 +50,17 @@ public class VendingMachineSteps {
     }
 
     @Dann("habe ich {int} Cent Guthaben")
-    public void habeIchCentGuthaben(int creditInCents) {
+    public void iHaveCreditOfAmountCents(int creditInCents) {
         assertThat(machine.credit(), is(creditInCents));
+    }
+
+    @Dann("liegt keine Dose {drink} im Ausgabefach")
+    public void notDrinkInOutputTray(Drink drink) {
+        assertThat(machine.outputTray(), not(contains(drink)));
+    }
+
+    @Und("ich habe {} Cent Guthaben")
+    public void iHaveAmountCents(int cents) {
+        machine.insertCoin(cents);
     }
 }
