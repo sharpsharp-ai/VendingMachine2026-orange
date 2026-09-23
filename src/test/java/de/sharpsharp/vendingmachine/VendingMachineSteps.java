@@ -1,11 +1,13 @@
 package de.sharpsharp.vendingmachine;
 
+import io.cucumber.java.PendingException;
 import io.cucumber.java.de.Angenommen;
 import io.cucumber.java.de.Dann;
 import io.cucumber.java.de.Wenn;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 /**
@@ -38,5 +40,18 @@ public class VendingMachineSteps {
         for (Drink drink: Drink.values()) {
             assertThat(machine.price(drink), notNullValue());
         }
+    }
+
+    @Wenn("ich {int} Münze zu je {int} Cent einwerfe")
+    public void insertXCoinsValuedY(int numberCoins, int coinValueCents) {
+        for (int i = 0; i < numberCoins; i++)
+        {
+            machine.insertCoin(coinValueCents);
+        }
+    }
+
+    @Dann("habe ich {int} Cent Guthaben")
+    public void habeIchCentGuthaben(int creditInCents) {
+        assertThat(machine.credit(), is(creditInCents));
     }
 }
