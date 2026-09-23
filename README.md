@@ -77,7 +77,7 @@ Beträge sind `int` in Cent, Meldungen sind Strings. Die Seite (`src/main/resour
 selbst, zeigt so viele Fächer, wie der Zustand liefert, einen Preis nur, wenn der Automat einen kennt,
 und blinkt rot, wenn `refused` gesetzt ist.
 
-`src/test/resources/features/freies_getraenk.feature` ist das erste Szenario und rot: Wer ein Fach wählt,
+`src/test/resources/features/acceptance_test_vending_machine.feature` ist das erste Szenario und rot: Wer ein Fach wählt,
 bekommt die Dose. `mvn -q verify` und die Pipeline sind rot, bis es grün ist. Weitere Szenarien gibt es nicht.
 
 ## Stories und Specs

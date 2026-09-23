@@ -1,6 +1,11 @@
-package de.sharpsharp.vendingmachine;
+package de.sharpsharp.vendingmachine.unittest;
 
 import java.util.List;
+
+import de.sharpsharp.vendingmachine.Clock;
+import de.sharpsharp.vendingmachine.Drink;
+import de.sharpsharp.vendingmachine.FakeClock;
+import de.sharpsharp.vendingmachine.VendingMachine;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
