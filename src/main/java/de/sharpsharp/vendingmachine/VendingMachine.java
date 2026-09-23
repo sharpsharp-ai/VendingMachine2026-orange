@@ -15,6 +15,16 @@ import java.util.Map;
 public class VendingMachine {
 
     public static final int CANS_PER_SLOT = 5;
+    public static final int SOFTDRINK_PRICE = 100;
+    public static final int BEER_PRICE = 200;
+
+    private static final Map<Drink, Integer> PRICES = new EnumMap<>(Drink.class);
+
+    static {
+        for (Drink d : Drink.values()) {
+            PRICES.put(d, d == Drink.BEER ? BEER_PRICE : SOFTDRINK_PRICE);
+        }
+    }
 
     private final Map<Drink, Integer> stock = new EnumMap<>(Drink.class);
     /** The time of day, for rules that depend on it. Never read the system time directly: ask the clock. */
@@ -75,7 +85,7 @@ public class VendingMachine {
 
     /** The price shown behind the name of the drink, in cents. Null: the machine knows no price yet. */
     public synchronized Integer price(Drink drink) {
-        return null;
+        return PRICES.get(drink);
     }
 
     /** The cans that dropped out and have not been taken yet. */
