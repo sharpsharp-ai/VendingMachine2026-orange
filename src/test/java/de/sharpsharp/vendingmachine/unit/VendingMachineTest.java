@@ -8,6 +8,7 @@ import de.sharpsharp.vendingmachine.FakeClock;
 import de.sharpsharp.vendingmachine.VendingMachine;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.is;
 
 public class VendingMachineTest {
   private VendingMachine vendingMachine;
@@ -18,8 +19,17 @@ public class VendingMachineTest {
 
   @Test
   public void noMoneyInserted_freeDrink() {
-    vendingMachine.selectDrink(Drink.COLA);
+    Drink cola = Drink.COLA;
+    vendingMachine.selectDrink(cola);
 
-    assertThat(vendingMachine.outputTray(), contains(Drink.COLA));
+    assertThat(vendingMachine.outputTray(), contains(cola));
+  }
+
+  @Test
+  public void viewDrink_returnPrice(){
+    Drink beer = Drink.BEER;
+    int price = vendingMachine.price(beer);
+
+    assertThat(price,is(beer.displayPrice()));
   }
 }
