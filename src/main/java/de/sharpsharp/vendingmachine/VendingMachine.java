@@ -21,6 +21,7 @@ public class VendingMachine {
     /** The time of day, for rules that depend on it. Never read the system time directly: ask the clock. */
     private final Clock clock;
 
+    private int credit = 0;
     private List<Drink> tray = new ArrayList<>();
 
     public VendingMachine(Clock clock) {
@@ -33,6 +34,7 @@ public class VendingMachine {
     // ---- What a customer can do --------------------------------------------
 
     public synchronized void insertCoin(int cents) {
+        credit += cents;
     }
 
     public synchronized void selectDrink(Drink drink) {
@@ -57,7 +59,12 @@ public class VendingMachine {
 
     /** In cents. */
     public synchronized int credit() {
-        return 0;
+        return credit;
+    }
+
+    public synchronized String displayCredit() {
+        DecimalFormat df = new DecimalFormat("0,00");
+        return "%s €".formatted(df.format(credit));
     }
 
     public synchronized String message() {

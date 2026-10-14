@@ -40,4 +40,17 @@ public class VendingMachineSteps {
         String formattedPrice = df.format(drink.price());
         assertThat(machine.displayPrice(drink), is("%s %s €".formatted(drink.displayName(), formattedPrice)));
     }
+
+    @Wenn("man {int} Münzen a {int} Cent einwirft")
+    public void insertCoins(int anzahl, int betrag) {
+        for (int i = 0; i< anzahl; i++) {
+            machine.insertCoin(betrag);
+        }
+    }
+
+    @Dann("wird {string} angezeigt")
+    public void showResult(String betrag) {
+        assertThat(machine.displayCredit(), is(betrag));
+    }
+
 }

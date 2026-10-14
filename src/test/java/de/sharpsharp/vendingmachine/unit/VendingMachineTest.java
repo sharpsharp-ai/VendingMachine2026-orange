@@ -32,4 +32,13 @@ public class VendingMachineTest {
 
     assertThat(price,is(beer.price()));
   }
+
+  @Test
+  public void insertCoins_showsCredit() {
+    vendingMachine.insertCoin(50);
+    vendingMachine.insertCoin(50);
+    vendingMachine.insertCoin(50);
+
+    assertThat(vendingMachine.displayCredit(), is("1.50 €"));
+  }
 }
