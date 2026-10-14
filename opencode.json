@@ -56,7 +56,10 @@
       "mode": "primary",
       "steps": 15,
       "permission": {
-        "edit": "deny"
+        "edit": "deny",
+        "bash": {
+          "* > *": "deny"
+        }
       }
     }
   }
