@@ -1,5 +1,6 @@
 package de.sharpsharp.vendingmachine;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -74,7 +75,13 @@ public class VendingMachine {
 
     /** The price shown behind the name of the drink, in cents. Null: the machine knows no price yet. */
     public synchronized Integer price(Drink drink) {
-        return drink.displayPrice();
+        return drink.price();
+    }
+
+    public synchronized String displayPrice(Drink drink) {
+        DecimalFormat df = new DecimalFormat("0,00");
+        String formattedPrice = df.format(drink.price());
+        return "%s %s €".formatted(drink.displayName(), formattedPrice);
     }
 
     /** The cans that dropped out and have not been taken yet. */

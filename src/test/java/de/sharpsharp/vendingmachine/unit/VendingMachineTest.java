@@ -30,6 +30,6 @@ public class VendingMachineTest {
     Drink beer = Drink.BEER;
     int price = vendingMachine.price(beer);
 
-    assertThat(price,is(beer.displayPrice()));
+    assertThat(price,is(beer.price()));
   }
 }

@@ -1,5 +1,6 @@
 package de.sharpsharp.vendingmachine;
 
+import java.text.DecimalFormat;
 import io.cucumber.java.de.Angenommen;
 import io.cucumber.java.de.Dann;
 import io.cucumber.java.de.Wenn;
@@ -35,6 +36,8 @@ public class VendingMachineSteps {
 
     @Dann("ist der Preis von der {drink} erkennbar")
     public void lookAtDrink(Drink drink){
-      assertThat(machine.price(drink), is(drink.displayPrice()));
+        DecimalFormat df = new DecimalFormat("0,00");
+        String formattedPrice = df.format(drink.price());
+        assertThat(machine.displayPrice(drink), is("%s %s €".formatted(drink.displayName(), formattedPrice)));
     }
 }

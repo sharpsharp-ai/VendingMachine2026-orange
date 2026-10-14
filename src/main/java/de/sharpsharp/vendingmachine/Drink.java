@@ -20,7 +20,7 @@ public enum Drink {
         return displayName;
     }
 
-  public int displayPrice() {
+  public int price() {
       return price;
   }
 }
