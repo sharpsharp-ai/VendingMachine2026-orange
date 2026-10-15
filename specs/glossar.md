@@ -30,11 +30,18 @@ die Schrittdefinitionen rufen die Methode in der letzten Spalte.
 
 - {drink}: Cola|Orange|Zitrone|Bier
 - {betrag}: \d+,\d{2} €|\d+ €|\d+ ct
+- {coin}: 50 ct|1,00 €|1 €|2,00 €|2 €
 
 ## Vorhandene Schritte
 
 Wiederverwenden, bevor ein neuer Schritt entsteht. Quelle: die Step-Klassen im Paket `de.sharpsharp.vendingmachine`.
 
 - Angenommen der Automat ist frisch gestartet
+- Dann bleibt das Guthaben bei {string}
+- Dann der Automat meldet {string}
+- Dann ist der Preis von der {drink} erkennbar
 - Dann liegt eine Dose {drink} im Ausgabefach
+- Dann liegt kein Getränk im Ausgabefach
+- Dann wird {string} angezeigt
 - Wenn ich {drink} wähle
+- Wenn ich eine {coin} Münze einwerfe

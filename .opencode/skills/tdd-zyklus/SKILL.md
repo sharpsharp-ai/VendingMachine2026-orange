@@ -13,6 +13,7 @@ description: Rot, Grün, Aufräumen. Ein Szenario mit Unit-Tests in kleinen Schr
 5. Fertig: `mvn -q verify` ohne Ausgabe.
 
 ## Regeln
+- **Unit-Tests vor Produktivcode.** Immer zuerst den Test schreiben, dann den Code. Nie Code ohne vorherigen roten Test.
 - Ein Test prüft eine Regel. Sein Name nennt die Regel: `leeresFachGibtKeineDose`.
 - Kompiliert das Projekt nicht, verlangen die Schritte eine Methode oder ein Interface, das fehlt. Erst das bauen, dann Rot.
 - Keine Testwerte im Produktivcode. Wer `if (drink == COLA) return 3` schreibt, statt den Bestand zu führen, rät.

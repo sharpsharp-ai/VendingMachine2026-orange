@@ -29,4 +29,16 @@ public class ParameterTypes {
         }
         return cents;
     }
+
+    @ParameterType("50 ct|1,00 €|1 €|2,00 €|2 €")
+    public Coin coin(String text) {
+        switch (text) {
+            case "50 ct": return Coin.FIFTY_CENTS;
+            case "1 €":
+            case "1,00 €": return Coin.ONE_EURO;
+            case "2 €":
+            case "2,00 €": return Coin.TWO_EUROS;
+            default: throw new IllegalArgumentException("Unknown coin: " + text);
+        }
+    }
 }

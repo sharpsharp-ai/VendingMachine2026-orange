@@ -2,7 +2,7 @@
 name: akzeptanztest-regeln
 description: Die elf Regeln für gute Akzeptanztests in Gherkin, mit Beispiel und Checkliste; gilt für jede Feature-Datei
 ---
-# Elf Regeln für Akzeptanztests
+# Regeln für Akzeptanztests
 
 1. Ein Szenario, ein Verhalten: genau ein Wenn. Hat die Regel keinen Auslöser (EARS „Immer“), entfällt das Wenn: nur Angenommen und Dann.
 2. Deklarativ: was, nicht wie. Keine Knöpfe, Klicks, IDs, Indizes, HTTP.
@@ -15,6 +15,7 @@ description: Die elf Regeln für gute Akzeptanztests in Gherkin, mit Beispiel un
 9. Jedes Akzeptanzkriterium hat mindestens ein Szenario: Normalfall, Randfall, Fehlerfall. Varianten per Szenariogrundriss.
 10. Höchstens etwa sechs Schritte. Grundlage sparsam.
 11. Schritte sprechen mit `VendingMachine`, nicht mit der Oberfläche.
+12. Nach jedem mvn -q verify immer scripts/steps-glossar.sh ausführen. Das Glossar wird automatisch aus den Schritt-Annotationen generiert und bleibt so synchron mit dem Code.
 
 ## Beispiel
 

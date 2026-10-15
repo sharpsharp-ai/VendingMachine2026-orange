@@ -18,14 +18,6 @@ public class VendingMachineTest {
   }
 
   @Test
-  public void noMoneyInserted_freeDrink() {
-    Drink cola = Drink.COLA;
-    vendingMachine.selectDrink(cola);
-
-    assertThat(vendingMachine.outputTray(), contains(cola));
-  }
-
-  @Test
   public void viewDrink_returnPrice(){
     Drink beer = Drink.BEER;
     int price = vendingMachine.price(beer);
@@ -40,5 +32,30 @@ public class VendingMachineTest {
     vendingMachine.insertCoin(50);
 
     assertThat(vendingMachine.displayCredit(), is("1,50 €"));
+  }
+
+  @Test
+  public void guthabenReichtNicht_KeineDose() {
+    vendingMachine.insertCoin(50);
+    vendingMachine.selectDrink(Drink.COLA);
+
+    assertThat(vendingMachine.outputTray().isEmpty(), is(true));
+  }
+
+  @Test
+  public void guthabenReichtNicht_Meldung() {
+    vendingMachine.insertCoin(50);
+    vendingMachine.selectDrink(Drink.COLA);
+
+    assertThat(vendingMachine.message(), is("Zu wenig Geld"));
+  }
+
+  @Test
+  public void guthabenReichtPreisWirdAbgezogen() {
+    vendingMachine.insertCoin(150);
+    vendingMachine.selectDrink(Drink.COLA);
+
+    assertThat(vendingMachine.outputTray(), contains(Drink.COLA));
+    assertThat(vendingMachine.credit(), is(50));
   }
 }

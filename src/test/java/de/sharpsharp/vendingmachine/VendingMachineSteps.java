@@ -41,15 +41,28 @@ public class VendingMachineSteps {
         assertThat(machine.displayPrice(drink), is("%s %s €".formatted(drink.displayName(), formattedPrice)));
     }
 
-    @Wenn("man {int} Münzen a {int} Cent einwirft")
-    public void insertCoins(int anzahl, int betrag) {
-        for (int i = 0; i< anzahl; i++) {
-            machine.insertCoin(betrag);
-        }
+    @Wenn("ich eine {coin} Münze einwerfe")
+    public void iInsertCoin(Coin coin) {
+        machine.insertCoin(coin.cents());
     }
 
     @Dann("wird {string} angezeigt")
     public void showResult(String betrag) {
+        assertThat(machine.displayCredit(), is(betrag));
+    }
+
+    @Dann("liegt kein Getränk im Ausgabefach")
+    public void noDrinkInOutputTray() {
+        assertThat(machine.outputTray().isEmpty(), is(true));
+    }
+
+    @Dann("der Automat meldet {string}")
+    public void theMachineSays(String text) {
+        assertThat(machine.message(), is(text));
+    }
+
+    @Dann("bleibt das Guthaben bei {string}")
+    public void creditRemainsAt(String betrag) {
         assertThat(machine.displayCredit(), is(betrag));
     }
 
