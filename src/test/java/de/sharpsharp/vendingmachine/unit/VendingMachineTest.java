@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import de.sharpsharp.vendingmachine.Drink;
 import de.sharpsharp.vendingmachine.FakeClock;
 import de.sharpsharp.vendingmachine.VendingMachine;
+import de.sharpsharp.vendingmachine.Coin;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
@@ -57,5 +58,38 @@ public class VendingMachineTest {
 
     assertThat(vendingMachine.outputTray(), contains(Drink.COLA));
     assertThat(vendingMachine.credit(), is(50));
+  }
+
+  @Test
+  public void cancelGibtWechselgeld() {
+    vendingMachine.insertCoin(Coin.ONE_EURO.cents());
+    vendingMachine.insertCoin(Coin.FIFTY_CENTS.cents());
+    vendingMachine.cancel();
+    assertThat(vendingMachine.credit(), is(0));
+    assertThat(vendingMachine.coinReturn().size(), is(2));
+  }
+
+  @Test
+  public void cancelGibtKorrektenWertZurueck() {
+    vendingMachine.insertCoin(Coin.ONE_EURO.cents());
+    vendingMachine.insertCoin(Coin.FIFTY_CENTS.cents());
+    vendingMachine.cancel();
+    int sum = vendingMachine.coinReturn().stream().mapToInt(Integer::intValue).sum();
+    assertThat(sum, is(150));
+  }
+
+  @Test
+  public void cancelOhneGuthabenGibtKeineMuenzen() {
+    vendingMachine.cancel();
+    assertThat(vendingMachine.credit(), is(0));
+    assertThat(vendingMachine.coinReturn().isEmpty(), is(true));
+  }
+
+  @Test
+  public void takeCoinsClearsReturn() {
+    vendingMachine.insertCoin(Coin.ONE_EURO.cents());
+    vendingMachine.cancel();
+    vendingMachine.takeCoins();
+    assertThat(vendingMachine.coinReturn().isEmpty(), is(true));
   }
 }

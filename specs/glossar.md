@@ -40,8 +40,12 @@ Wiederverwenden, bevor ein neuer Schritt entsteht. Quelle: die Step-Klassen im P
 - Dann bleibt das Guthaben bei {string}
 - Dann der Automat meldet {string}
 - Dann ist der Preis von der {drink} erkennbar
+- Dann liegen {int} Münzen in der Münzrückgabe
+- Dann liegen keine Münzen in der Münzrückgabe
 - Dann liegt eine Dose {drink} im Ausgabefach
 - Dann liegt kein Getränk im Ausgabefach
 - Dann wird {string} angezeigt
+- Wenn ich Abbruch drücke
+- Wenn ich die Münzrückgabe leere
 - Wenn ich {drink} wähle
 - Wenn ich eine {coin} Münze einwerfe

@@ -16,6 +16,7 @@ import java.util.Map;
 public class VendingMachine {
 
     public static final int CANS_PER_SLOT = 5;
+    public static final int CENTS_PER_EURO = 100;
 
     private final Map<Drink, Integer> stock = new EnumMap<>(Drink.class);
     /** The time of day, for rules that depend on it. Never read the system time directly: ask the clock. */
@@ -23,6 +24,7 @@ public class VendingMachine {
 
     private int credit = 0;
     private List<Drink> tray = new ArrayList<>();
+    private List<Integer> coinReturn = new ArrayList<>();
     private String message = "Bitte Münzen einwerfen";
 
     public VendingMachine(Clock clock) {
@@ -50,6 +52,12 @@ public class VendingMachine {
     }
 
     public synchronized void cancel() {
+        if (credit == 0) {
+            return;
+        }
+        coinReturn.add(credit / CENTS_PER_EURO * CENTS_PER_EURO);
+        coinReturn.add(credit % CENTS_PER_EURO);
+        credit = 0;
     }
 
     /** Empties the output tray and returns the cans that were in it. */
@@ -59,7 +67,9 @@ public class VendingMachine {
 
     /** Empties the coin return and returns the coins that were in it, in cents. */
     public synchronized List<Integer> takeCoins() {
-        return List.of();
+        List<Integer> coins = coinReturn;
+        coinReturn = new ArrayList<>();
+        return coins;
     }
 
     // ---- What the machine shows ---------------------------------------------
@@ -105,6 +115,6 @@ public class VendingMachine {
 
     /** The coins that came back and have not been taken yet, in cents. */
     public synchronized List<Integer> coinReturn() {
-        return List.of();
+        return coinReturn;
     }
 }

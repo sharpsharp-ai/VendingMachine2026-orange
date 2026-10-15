@@ -66,4 +66,24 @@ public class VendingMachineSteps {
         assertThat(machine.displayCredit(), is(betrag));
     }
 
+    @Wenn("ich Abbruch drücke")
+    public void iCancel() {
+        machine.cancel();
+    }
+
+    @Dann("liegen {int} Münzen in der Münzrückgabe")
+    public void coinsInCoinReturn(int count) {
+        assertThat(machine.coinReturn().size(), is(count));
+    }
+
+    @Dann("liegen keine Münzen in der Münzrückgabe")
+    public void noCoinsInCoinReturn() {
+        assertThat(machine.coinReturn().isEmpty(), is(true));
+    }
+
+    @Wenn("ich die Münzrückgabe leere")
+    public void iTakeCoins() {
+        machine.takeCoins();
+    }
+
 }
