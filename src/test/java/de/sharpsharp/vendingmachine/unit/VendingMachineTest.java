@@ -39,6 +39,6 @@ public class VendingMachineTest {
     vendingMachine.insertCoin(50);
     vendingMachine.insertCoin(50);
 
-    assertThat(vendingMachine.displayCredit(), is("1.50 €"));
+    assertThat(vendingMachine.displayCredit(), is("1,50 €"));
   }
 }
