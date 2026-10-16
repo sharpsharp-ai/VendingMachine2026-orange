@@ -5,7 +5,7 @@ public enum Drink {
     COLA("Cola",100),
     ORANGE("Orange",200),
     LEMON("Zitrone",300),
-    BEER("Bier",400);
+    BEER("Bier",200);
 
     private final String displayName;
     private final int price;
