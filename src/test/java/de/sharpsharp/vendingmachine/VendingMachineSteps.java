@@ -1,6 +1,7 @@
 package de.sharpsharp.vendingmachine;
 
 import java.text.DecimalFormat;
+import java.time.LocalTime;
 import io.cucumber.java.de.Angenommen;
 import io.cucumber.java.de.Dann;
 import io.cucumber.java.de.Wenn;
@@ -24,6 +25,11 @@ public class VendingMachineSteps {
         // Nothing to do: Cucumber builds this class, and with it the machine, fresh for every scenario.
     }
 
+    @Angenommen("es ist {int}:{int} Uhr")
+    public void itIs(int hour, int minute) {
+        clock.set(LocalTime.of(hour, minute));
+    }
+
     @Wenn("ich {drink} wähle")
     public void iSelect(Drink drink) {
         machine.selectDrink(drink);
@@ -43,6 +49,15 @@ public class VendingMachineSteps {
 
     @Wenn("ich eine {coin} Münze einwerfe")
     public void iInsertCoin(Coin coin) {
+        insertCoin(coin);
+    }
+
+    @Angenommen("ich werfe eine {coin} Münze ein")
+    public void iInsertCoinAsAssumption(Coin coin) {
+        insertCoin(coin);
+    }
+
+    private void insertCoin(Coin coin) {
         machine.insertCoin(coin.cents());
     }
 

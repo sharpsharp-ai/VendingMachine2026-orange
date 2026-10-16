@@ -1,6 +1,7 @@
 package de.sharpsharp.vendingmachine;
 
 import java.text.DecimalFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -17,6 +18,7 @@ public class VendingMachine {
 
     public static final int CANS_PER_SLOT = 5;
     public static final int CENTS_PER_EURO = 100;
+    private static final LocalTime BEER_SALES_START = LocalTime.of(16, 0);
 
     private final Map<Drink, Integer> stock = new EnumMap<>(Drink.class);
     /** The time of day, for rules that depend on it. Never read the system time directly: ask the clock. */
@@ -41,6 +43,10 @@ public class VendingMachine {
     }
 
     public synchronized void selectDrink(Drink drink) {
+        if (drink == Drink.BEER && clock.now().isBefore(BEER_SALES_START)) {
+            message = "Kein Bier vor 16";
+            return;
+        }
         if (credit < drink.price()) {
             message = "Zu wenig Geld";
             return;

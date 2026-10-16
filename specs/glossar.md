@@ -37,6 +37,8 @@ die Schrittdefinitionen rufen die Methode in der letzten Spalte.
 Wiederverwenden, bevor ein neuer Schritt entsteht. Quelle: die Step-Klassen im Paket `de.sharpsharp.vendingmachine`.
 
 - Angenommen der Automat ist frisch gestartet
+- Angenommen es ist {int}:{int} Uhr
+- Angenommen ich werfe eine {coin} Münze ein
 - Dann bleibt das Guthaben bei {string}
 - Dann der Automat meldet {string}
 - Dann ist der Preis von der {drink} erkennbar
